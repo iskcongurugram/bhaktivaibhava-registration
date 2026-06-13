@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bhakti-Vaibhava Course 2026 Registration</title>
+  <!-- Included Tabler Icons CDN to ensure all symbols render perfectly -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    /* ISKCON THEME BACKGROUND COLOR CHANGE */
+    body {
+      background-color: #FFF8F2; /* Soft premium cream/light-saffron tone for zero eye strain */
+    }
+
+    .page { max-width: 680px; margin: 0 auto; padding: 2rem 1rem 3rem; }
+    
+    /* Updated Header Banner Layout to Support Left and Right Corner Images */
+    .header { 
+      text-align: center; 
+      margin-bottom: 2rem; 
+      padding-bottom: 1.5rem; 
+      border-bottom: 0.5px solid #E6D7CB; 
+      position: relative;
+      padding-left: 90px;
+      padding-right: 90px;
+    }
+    .header-logo-left {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 75px;
+      height: 75px;
+      object-fit: contain;
+    }
+    .header-logo-right {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 75px;
+      height: 75px;
+      object-fit: contain;
+    }
+
+    .course-tag { display: inline-block; background: #EEEDFE; color: #3C3489; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 20px; margin-bottom: 0.75rem; text-transform: uppercase; }
+    .header h1 { font-size: 20px; font-weight: 500; color: #333333; margin-bottom: 0.25rem; }
+    .header p { font-size: 13px; color: #666666; }
+    
+    /* Elegant contrast for form panels against the page background */
+    .section { background: #FFFFFF; border: 0.5px solid #E6D7CB; border-radius: 12px; padding: 1.25rem 1.25rem 1rem; margin-bottom: 1rem; }
+    
+    .section-title { font-size: 13px; font-weight: 500; color: #534AB7; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 6px; }
+    .section-title i { font-size: 15px; }
+    .field { margin-bottom: 1rem; }
+    .field:last-child { margin-bottom: 0; }
+    label { display: block; font-size: 13px; color: #666666; margin-bottom: 5px; }
+    label .req { color: #D85A30; margin-left: 2px; }
+    
+    input[type="text"], input[type="email"], input[type="date"], input[type="number"], select, textarea {
+      width: 100%; font-size: 14px; padding: 8px 10px; border: 0.5px solid #CCCCCC;
+      border-radius: 6px; background: #FFFFFF;
+      color: #333333; outline: none; transition: border-color 0.15s, background-color 0.15s;
+    }
+    input:focus, select:focus, textarea:focus { border-color: #7F77DD; box-shadow: 0 0 0 2px #EEEDFE; }
+    
+    /* DYNAMIC GREEN HIGHLIGHT FOR FILLED TEXTBOXES */
+    input.filled, select.filled, textarea.filled {
+      border-color: #3B6D11 !important;
+      background-color: #F9FBF7 !important;
+    }
+
+    textarea { resize: vertical; min-height: 72px; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .radio-group { display: flex; gap: 1.5rem; flex-wrap: wrap; padding-top: 4px; }
+    .radio-group label { display: flex; align-items: center; gap: 6px; font-size: 14px; color: #333333; cursor: pointer; margin: 0; }
+    .radio-group input[type="radio"] { width: 16px; height: 16px; accent-color: #534AB7; }
+    .plan-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1rem; }
+    .plan-card { border: 1.5px solid #E6D7CB; border-radius: 12px; padding: 1rem; cursor: pointer; transition: border-color 0.15s, background 0.15s; position: relative; }
+    .plan-card:hover { border-color: #7F77DD; }
+    
+    /* GREEN SELECTION HIGHLIGHT FOR PLANS */
+    .plan-card.selected { border-color: #3B6D11; background: #EEEDFE; }
+    .plan-card input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+    .plan-card .plan-label { font-size: 12px; font-weight: 500; color: #534AB7; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .plan-card .plan-amount { font-size: 22px; font-weight: 500; color: #333333; }
+    .plan-card .plan-amount span { font-size: 13px; font-weight: 400; color: #666666; }
+    .plan-card .plan-desc { font-size: 12px; color: #666666; margin-top: 4px; line-height: 1.5; }
+    .plan-card .check-icon { position: absolute; top: 10px; right: 10px; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #CCCCCC; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+    .plan-card.selected .check-icon { background: #3B6D11; border-color: #3B6D11; color: #fff; }
+
+    .instalment-breakdown { background: #FAFAFA; border-radius: 6px; padding: 0.9rem 1rem; margin-top: 0.5rem; display: none; border: 0.5px solid #E6D7CB; }
+    .instalment-breakdown.visible { display: block; }
+    .inst-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 0.5px solid #E6D7CB; }
+    .inst-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .inst-row .inst-label { font-size: 13px; color: #666666; display: flex; align-items: center; gap: 6px; }
+    .inst-row .inst-label i { font-size: 14px; color: #534AB7; }
+    .inst-row .inst-val { font-size: 14px; font-weight: 500; color: #333333; }
+    .amount-banner { background: #534AB7; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    .amount-banner .ab-label { font-size: 13px; color: #AFA9EC; }
+    .amount-banner .ab-amount { font-size: 26px; font-weight: 500; color: #fff; }
+    .amount-banner .ab-note { font-size: 12px; color: #CEC9F6; margin-top: 2px; }
+    .payment-box { background: #FAFAFA; border-radius: 6px; padding: 1rem; margin-bottom: 0.75rem; border: 0.5px solid #E6D7CB; }
+    .payment-box .p-title { font-size: 13px; font-weight: 500; color: #333333; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .payment-box .p-title i { color: #534AB7; font-size: 15px; }
+    .upi-id { font-size: 15px; font-weight: 500; color: #3C3489; background: #EEEDFE; padding: 6px 12px; border-radius: 6px; display: inline-block; letter-spacing: 0.03em; }
+    
+    /* ====== QR CODE SCANNER ENLARGEMENT RULES ====== */
+    .qr-placeholder { 
+      width: 250px; /* Expanded layout dimensions to make it look visibly larger */
+      height: 250px; 
+      background: #FFFFFF; 
+      border: 0.5px solid #CCCCCC; 
+      border-radius: 6px; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      justify-content: center; 
+      gap: 6px; 
+      margin: 12px auto; 
+      overflow: hidden; 
+    }
+    .qr-placeholder i { font-size: 40px; color: #534AB7; }
+    .qr-placeholder span { font-size: 11px; color: #666666; }
+    .qr-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* Perfect scaling aspect ratio safety match */
+      padding: 8px;
+    }
+    /* ==================================================== */
+
+    .upload-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #534AB7; background: #EEEDFE; padding: 6px 12px; border-radius: 6px; cursor: pointer; border: 0.5px solid #AFA9EC; }
+    .hint { font-size: 12px; color: #888888; margin-top: 4px; }
+    .submit-btn { width: 100%; padding: 12px; background: #534AB7; color: #fff; border: none; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 1.5rem; transition: background 0.15s; }
+    .submit-btn:hover { background: #3C3489; }
+    .submit-btn i { font-size: 18px; }
+    .submit-btn:disabled { background: #888; cursor: not-allowed; }
+    .success-msg { display: none; text-align: center; padding: 2rem; background: #EAF3DE; border-radius: 12px; border: 0.5px solid #97C459; margin-top: 1.5rem; }
+    .success-msg i { font-size: 40px; color: #3B6D11; }
+    .success-msg h2 { font-size: 18px; font-weight: 500; color: #27500A; margin: 0.5rem 0 0.25rem; }
+    .success-msg p { font-size: 14px; color: #3B6D11; }
+    .error-msg { font-size: 12px; color: #D85A30; margin-top: 4px; display: none; }
+    .submitting-overlay { display: none; align-items: center; justify-content: center; gap: 8px; font-size: 14px; color: #666666; padding: 1rem; }
+
+    /* ENHANCED MOBILE RESPONSIVENESS & TEXT VIEW SCALING */
+    @media (max-width: 480px) { 
+      .row2, .row3, .plan-cards { grid-template-columns: 1fr; gap: 14px; } 
+      .page { padding: 1rem 0.5rem 2rem; }
+      
+      .header { padding-left: 10px; padding-right: 10px; padding-top: 90px; }
+      .header-logo-left { top: 10px; left: 15px; transform: none; width: 65px; height: 65px; }
+      .header-logo-right { top: 10px; right: 15px; transform: none; width: 65px; height: 65px; }
+
+      label { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+      input[type="text"], input[type="email"], input[type="date"], input[type="number"], select, textarea {
+        font-size: 16px; padding: 11px 12px;
+      }
+      .header h1 { font-size: 22px; }
+      .header p { font-size: 14px; }
+      .section-title { font-size: 15px; }
+      .plan-card .plan-amount { font-size: 24px; }
+      .plan-card .plan-desc { font-size: 13.5px; }
+      .hint { font-size: 13px; }
+      .upi-id { font-size: 16px; padding: 8px 14px; }
+      .submit-btn { font-size: 17px; padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <h2 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Bhakti-Vaibhava Course 2026 Registration Form</h2>
+
+  <div class="header">
+    <img src="https://i.postimg.cc/T2NfKPRM/iskcon-gurugram-logo.png" alt="ISKCON Gurugram Logo" class="header-logo-left" />
+    <img src="https://i.postimg.cc/qBD4N7kp/srila-prabhupada.png" alt="Srila Prabhupada" class="header-logo-right" />
+
+    <div style="font-size:28px;margin-bottom:0.5rem">🪷</div>
+    <div class="course-tag">Registration Open</div>
+    <h1>Bhakti-Vaibhava Course — '26</h1>
+    <p>Please fill in all details carefully. Fields marked <span style="color:#D85A30">*</span> are required.</p>
+  </div>
+
+  <div id="form-body">
+
+    <div class="section">
+      <div class="section-title"><i class="ti ti-user" aria-hidden="true"></i> Personal details</div>
+      <div class="field">
+        <label>Full name <span class="req">*</span></label>
+        <input type="text" id="name" placeholder="As per official records" />
+      </div>
+      <div class="field">
+        <label>Initiate name <span style="font-size:12px;color:#888888">(if initiated)</span></label>
+        <input type="text" id="initiate-name" placeholder="Spiritual name given at initiation" />
+      </div>
+      <div class="field">
+        <label>Gender <span class="req">*</span></label>
+        <div class="radio-group">
+          <label><input type="radio" name="gender" value="Male"> Male</label>
+          <label><input type="radio" name="gender" value="Female"> Female</label>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label>Age <span class="req">*</span></label>
+          <input type="number" id="age" placeholder="Years" min="10" max="100" />
+        </div>
+        <div class="field">
+          <label>Date of birth <span class="req">*</span></label>
+          <input type="date" id="dob" />
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><i class="ti ti-home" aria-hidden="true"></i> Temple & contact</div>
+      <div class="field">
+        <label>Associated temple name <span class="req">*</span></label>
+        <input type="text" id="temple" placeholder="e.g. ISKCON Vrindavan, ISKCON Bangalore" />
+      </div>
+      <div class="field">
+        <label>Email address <span class="req">*</span></label>
+        <input type="email" id="email" placeholder="you@example.com" />
+      </div>
+      <div class="field">
+        <label>Full address <span class="req">*</span></label>
+        <textarea id="address" placeholder="House / Flat No., Street, City, State, PIN code"></textarea>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><i class="ti ti-book" aria-hidden="true"></i> Academic background</div>
+      <div class="field">
+        <label>Bhakti Shastri completion date <span class="req">*</span></label>
+        <div class="row3">
+          <select id="bs-day"><option value="">Day</option></select>
+          <select id="bs-month">
+            <option value="">Month</option>
+            <option>January</option><option>February</option><option>March</option>
+            <option>April</option><option>May</option><option>June</option>
+            <option>July</option><option>August</option><option>September</option>
+            <option>October</option><option>November</option><option>December</option>
+          </select>
+          <select id="bs-year"><option value="">Year</option></select>
+        </div>
+        <div class="hint">Month and Year are sufficient if exact day is unknown.</div>
+      </div>
+      
+      <div class="field" style="margin-top:1.25rem;">
+        <label>Upload Bhakti Shastri Certificate <span style="font-size:12px;color:#888888">(Optional)</span></label>
+        <label class="upload-btn" for="cert-upload">
+          <i class="ti ti-file-upload" aria-hidden="true"></i> Choose Certificate File
+        </label>
+        <input type="file" id="cert-upload" accept="image/*,.pdf" style="display:none" />
+        <div id="cert-name" style="font-size:12px;color:#666666;margin-top:5px;"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title"><i class="ti ti-credit-card" aria-hidden="true"></i> Payment</div>
+
+      <div class="amount-banner">
+        <div>
+          <div class="ab-label">Course fee</div>
+          <div class="ab-amount">Rs. 8,499<span style="font-size:14px;font-weight:400;color:#CEC9F6">/–</span></div>
+          <div class="ab-note">Inclusive of all study materials</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:12px;color:#AFA9EC;margin-bottom:4px">Also available as</div>
+          <div style="font-size:13px;color:#fff;font-weight:500">2 easy instalments</div>
+          <div style="font-size:12px;color:#CEC9F6">Rs. 4,250 × 2</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Choose payment plan <span class="req">*</span></label>
+        <div class="plan-cards">
+          <div class="plan-card" id="card-full" onclick="selectPlan('full')">
+            <input type="radio" name="pay-plan" value="full" />
+            <div class="check-icon"><i class="ti ti-check" style="font-size:12px" aria-hidden="true"></i></div>
+            <div class="plan-label">Full payment</div>
+            <div class="plan-amount">Rs. 8,499<span>/–</span></div>
+            <div class="plan-desc">One-time payment. Enrolment confirmed immediately.</div>
+          </div>
+          <div class="plan-card" id="card-inst" onclick="selectPlan('inst')">
+            <input type="radio" name="pay-plan" value="inst" />
+            <div class="check-icon"><i class="ti ti-check" style="font-size:12px" aria-hidden="true"></i></div>
+            <div class="plan-label">2 instalments</div>
+            <div class="plan-amount">Rs. 4,250<span> × 2</span></div>
+            <div class="plan-desc">Pay first instalment now; second before the course begins.</div>
+          </div>
+        </div>
+
+        <div class="instalment-breakdown" id="inst-breakdown">
+          <div class="inst-row">
+            <div class="inst-label"><i class="ti ti-calendar-event" aria-hidden="true"></i> Instalment 1 — due now</div>
+            <div class="inst-val">Rs. 4,250</div>
+          </div>
+          <div class="inst-row">
+            <div class="inst-label"><i class="ti ti-calendar-due" aria-hidden="true"></i> Instalment 2 — before course starts</div>
+            <div class="inst-val">Rs. 4,250</div>
+          </div>
+          <div class="inst-row" style="border-bottom: none;">
+            <div class="inst-label" style="font-weight:500;color:#333333">Total</div>
+            <div class="inst-val" style="color:#534AB7">Rs. 8,500</div>
+          </div>
+          
+          <div class="field" style="margin-top: 1rem; border-top: 0.5px solid #E6D7CB; padding-top: 1rem;" id="inst-select-wrapper">
+            <label style="font-weight: 500; color: #333333;">Select the instalment you are paying now <span class="req">*</span></label>
+            <div class="radio-group" style="margin-top: 4px;">
+              <label><input type="radio" name="active-instalment-target" value="Instalment 1"> Instalment 1 (Rs. 4,250)</label>
+              <label><input type="radio" name="active-instalment-target" value="Instalment 2"> Instalment 2 (Rs. 4,250)</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="payment-box">
+        <div class="p-title"><i class="ti ti-qrcode" aria-hidden="true"></i> Pay via QR code</div>
+        <p style="font-size:13px;color:#666666;margin-bottom:8px;">Scan using any UPI app — PhonePe, Google Pay, Paytm, BHIM, etc.</p>
+        
+        <div class="qr-placeholder">
+          <img src="https://i.postimg.cc/nVSpXLny/qr-code.png" alt="Payment QR Code" />
+        </div>
+      </div>
+
+<!-- ====== PARALLEL UPI ID AND PHONE NUMBER DISPLAY CONFIGURATION ====== -->
+<div class="payment-box">
+  <div class="p-title"><i class="ti ti-device-mobile" aria-hidden="true"></i> Pay via UPI ID / Phone Number</div>
+  <p style="font-size:13px;color:#666666;margin-bottom:8px;">Send payment directly to:</p>
+  <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+    <span class="upi-id">paytm.s2ss9x1@pty</span>
+    
+    <!-- Elegant Text Separator -->
+    <span style="font-size: 12px; color: #888888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; padding: 0 2px;">or</span>
+    
+    <span class="upi-id" style="background: #FFF2E6; color: #B35900; border: 0.5px solid #FFD9B3;">7838146703</span>
+  </div>
+</div>
+<!-- ==================================================================== -->
+
+      <div class="field" style="margin-top:0.75rem">
+        <label>Transaction / UTR reference number <span class="req">*</span></label>
+        <input type="text" id="txn-id" placeholder="12-digit UTR or transaction ID" />
+        <div class="hint" id="txn-hint">Enter the UTR number after completing payment.</div>
+      </div>
+
+      <div class="field">
+        <label>Upload payment screenshot <span class="req">*</span></label>
+        <label class="upload-btn" for="screenshot-upload">
+          <i class="ti ti-upload" aria-hidden="true"></i> Choose file
+        </label>
+        <input type="file" id="screenshot-upload" accept="image/*" style="display:none" />
+        <div id="screenshot-name" style="font-size:12px;color:#666666;margin-top:5px;"></div>
+      </div>
+    </div>
+
+    <div id="form-error" style="font-size:13px;color:#D85A30;text-align:center;display:none;padding:0.5rem;">
+      Please fill in all required fields before submitting.
+    </div>
+
+    <button class="submit-btn" id="submit-btn" onclick="submitForm()">
+      <i class="ti ti-send" aria-hidden="true"></i> Submit registration
+    </button>
+
+    <div class="submitting-overlay" id="submitting">
+      <i class="ti ti-loader" style="font-size:18px;color:#534AB7" aria-hidden="true"></i> Submitting your registration…
+    </div>
+  </div>
+
+  <div class="success-msg" id="success-msg">
+    <i class="ti ti-circle-check" aria-hidden="true"></i>
+    <h2>Registration submitted!</h2>
+    <p>Hare Krishna! Your registration for Bhakti-Vaibhava Course '26 has been received. You will be contacted shortly on next steps.</p>
+  </div>
+</div>
+
+<script>
+const daySelect = document.getElementById('bs-day');
+for (let d = 1; d <= 31; d++) {
+  const o = document.createElement('option');
+  o.value = d; o.textContent = d; daySelect.appendChild(o);
+}
+const yearSelect = document.getElementById('bs-year');
+for (let y = 2000; y <= 2026; y++) {
+  const o = document.createElement('option');
+  o.value = y; o.textContent = y; yearSelect.appendChild(o);
+}
+
+function setupFilledBorders() {
+  const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="date"], input[type="number"], select, textarea');
+  inputs.forEach(el => {
+    const updateClass = () => {
+      if (el.value.trim() !== "") { el.classList.add('filled'); } 
+      else { el.classList.remove('filled'); }
+    };
+    el.addEventListener('input', updateClass);
+    el.addEventListener('change', updateClass);
+  });
+}
+window.addEventListener('DOMContentLoaded', setupFilledBorders);
+
+let selectedPlan = null;
+
+function selectPlan(plan) {
+  selectedPlan = plan;
+  document.getElementById('card-full').classList.toggle('selected', plan === 'full');
+  document.getElementById('card-inst').classList.toggle('selected', plan === 'inst');
+  document.getElementById('inst-breakdown').classList.toggle('visible', plan === 'inst');
+  document.getElementById('txn-hint').textContent = plan === 'inst'
+    ? 'Enter UTR for your selected instalment of Rs. 4,250.'
+    : 'Enter UTR for your full payment of Rs. 8,499.';
+  document.getElementById('card-full').style.borderColor = '';
+  document.getElementById('card-inst').style.borderColor = '';
+  document.getElementById('inst-select-wrapper').style.background = '';
+}
+
+document.getElementById('screenshot-upload').addEventListener('change', function() {
+  document.getElementById('screenshot-name').textContent = this.files[0] ? this.files[0].name : '';
+});
+
+document.getElementById('cert-upload').addEventListener('change', function() {
+  document.getElementById('cert-name').textContent = this.files[0] ? this.files[0].name : '';
+});
+
+async function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = error => reject(error);
+  });
+}
+
+async function submitForm() {
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzxRgvuiaWfMjz2cdUA9Ux20g2ptXOO_8Ok-uf9WkDOEsPGc2VJNfoPPHMQX0ArPfZNng/exec';
+
+  const req = ['name','email','age','dob','temple','address','txn-id'];
+  let ok = true;
+  req.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el.value.trim()) { el.style.borderColor = '#D85A30'; ok = false; }
+    else el.style.borderColor = '';
+  });
+  if (!document.querySelector('input[name="gender"]:checked')) ok = false;
+  
+  if (!selectedPlan) {
+    document.getElementById('card-full').style.borderColor = '#D85A30';
+    document.getElementById('card-inst').style.borderColor = '#D85A30';
+    ok = false;
+  }
+
+  let instalmentPlanString = "";
+  if (selectedPlan === 'inst') {
+    const chosenInstalmentElement = document.querySelector('input[name="active-instalment-target"]:checked');
+    if (!chosenInstalmentElement) {
+      document.getElementById('inst-select-wrapper').style.background = '#FDF2F0';
+      document.getElementById('inst-select-wrapper').style.borderRadius = '6px';
+      ok = false;
+    } else {
+      document.getElementById('inst-select-wrapper').style.background = '';
+      instalmentPlanString = " (Paid: " + chosenInstalmentElement.value + ")";
+    }
+  }
+
+  const fileInput = document.getElementById('screenshot-upload');
+  if (fileInput.files.length === 0) {
+    document.querySelector('.upload-btn[for="screenshot-upload"]').style.borderColor = '#D85A30';
+    ok = false;
+  } else {
+    document.querySelector('.upload-btn[for="screenshot-upload"]').style.borderColor = '#AFA9EC';
+  }
+
+  document.getElementById('form-error').style.display = ok ? 'none' : 'block';
+  if (!ok) return;
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  document.getElementById('submitting').style.display = 'flex';
+
+  const bsDay = document.getElementById('bs-day').value;
+  const bsMonth = document.getElementById('bs-month').value;
+  const bsYear = document.getElementById('bs-year').value;
+  const bsDate = [bsDay, bsMonth, bsYear].filter(Boolean).join(' ');
+
+  const file = fileInput.files[0];
+  const fileData = await getBase64(file);
+
+  const certInput = document.getElementById('cert-upload');
+  let certData = "";
+  let certName = "";
+  let certMimeType = "";
+  if (certInput.files.length > 0) {
+    const certFile = certInput.files[0];
+    certData = await getBase64(certFile);
+    certName = certFile.name;
+    certMimeType = certFile.type;
+  }
+
+  const payload = {
+    timestamp: new Date().toLocaleString('en-IN'),
+    name: document.getElementById('name').value.trim(),
+    initiateName: document.getElementById('initiate-name').value.trim(),
+    gender: document.querySelector('input[name="gender"]:checked').value,
+    age: document.getElementById('age').value,
+    dob: document.getElementById('dob').value,
+    temple: document.getElementById('temple').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    address: document.getElementById('address').value.trim(),
+    bhaktiShastriDate: bsDate,
+    
+    certData: certData,
+    certName: certName,
+    certMimeType: certMimeType,
+
+    paymentPlan: selectedPlan === 'full' ? 'Full Payment – Rs. 8,499' : '2 Instalments – Rs. 4,250 × 2' + instalmentPlanString,
+    transactionId: document.getElementById('txn-id').value.trim(),
+    fileName: file.name,
+    mimeType: file.type,
+    fileData: fileData
+  };
+
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+    document.getElementById('form-body').style.display = 'none';
+    document.getElementById('success-msg').style.display = 'block';
+  } catch(e) {
+    btn.disabled = false;
+    document.getElementById('submitting').style.display = 'none';
+    document.getElementById('form-error').textContent = 'Submission failed. Please try again.';
+    document.getElementById('form-error').style.display = 'block';
+  }
+}
+</script>
+</body>
+</html>
